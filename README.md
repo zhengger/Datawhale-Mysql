@@ -2,26 +2,26 @@
 
 ## Install mysql on mac  :)
 
-负责人：某某某
+负责人：59
 # 【任务一】
 
 ## 1.1 MySQL 软件安装及数据库基础
-**#学习内容#**
-1.Mac上软件安装及服务器设置。
-   [Mysql 官网](https://www.mysql.com/downloads/)
 
-   下载后Installed->设置密码***
+1.  Mac上软件安装及服务器设置。
+    [Mysql 官网](https://www.mysql.com/downloads/)
+    ```
+    下载后Installed->设置密码***
 
-   打开Settings->Start MySql Server->Server Running
+    打开Settings->Start MySql Server->Server Running
 
-   打开Terminal->进入mysql目录: cd /usr/local/mysql/bin ->客户端登陆: ./mysql -u root -p -> Password: 输入刚设置的密码***
+    打开Terminal->进入mysql目录: cd /usr/local/mysql/bin ->客户端登陆: ./mysql -u root -p -> Password: 输入刚设置的密码***
 
-   Welcome to the MySQL monitor, 进入mysql shell
-   mysql>
+    Welcome to the MySQL monitor, 进入mysql shell
+    mysql>
+    ```
    
-   
 
-2.数据库基础知识
+2.  数据库基础知识
    数据库定义
    关系型数据库
    二维表
@@ -30,14 +30,44 @@
    主键
    外键
 
-4.MySQL数据库管理系统
+3.  MySQL数据库管理系统
    数据库
    数据表
    视图
    存储过程
+
+
 ## 1.2 MySQL 基础 （一）- 查询语句
 #学习内容#
-1. 导入示例数据库，教程 [https://www.yiibai.com/mysql/how-to-load-sample-database-into-mysql-database-server.html](https://www.yiibai.com/mysql/how-to-load-sample-database-into-mysql-database-server.html)
+1. 导入示例数据库，[教程](https://www.yiibai.com/mysql/how-to-load-sample-database-into-mysql-database-server.html)
+    ```
+    //显示当前服务器上所有数据库
+    mysql>show databases; 
+    +--------------------+
+    | Database           |
+    +--------------------+
+    | information_schema |
+    | mysql              |
+    | performance_schema |
+    | sys                |
+    +--------------------+
+    //创建新数据库MyFirstDB
+    mysql>CREATE DATABASE IF NOT EXISTS MyFirstDB DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
+    //为MyFirstDB导入数据文件yiibaidb.sql
+    mysql>use MyFirstDB;
+    mysql>source /Users/zheng/Mysql_pro/yiibaidb.sql;
+    //在MyFirstDB中创建新表Email
+    mysql>CREATE TABLE Email (
+    ->ID INT NOT NULL PRIMARY KEY,
+    ->Email VARCHAR(255)
+    ->);
+    //为Email表插入数据
+    mysql>INSERT INTO email VALUES('1','a@b.com');
+    ```
+
+
+
+   
 
 2. SQL是什么？MySQL是什么？
 
@@ -65,15 +95,20 @@
     时间函数
     数值函数
     字符串函数
-8. SQL注释
+8.  SQL注释
 
-9. SQL代码规范
+9.  SQL代码规范
 
     [SQL编程格式的优化建议] [https://zhuanlan.zhihu.com/p/27466166](https://zhuanlan.zhihu.com/p/27466166)
     [SQL Style Guide] [https://www.sqlstyle.guide/](https://www.sqlstyle.guide/)
 
 #作业#
 项目一：查找重复的电子邮箱（难度：简单）
+
+    ```
+    mysql>select distinct email from Email;
+    ```
+
 创建 email表，并插入如下三行数据
 +----+---------+
 | Id | Email   |
@@ -93,6 +128,11 @@
 说明：所有电子邮箱都是小写字母。
 
 项目二：查找大国（难度：简单）
+
+    ```
+    mysql>select name, population, area from World WHERE area>300000 OR population>25000000 AND gdp>20000000;
+    ```    
+
 创建如下 World 表
 +-----------------+------------+------------+--------------+---------------+
 | name            | continent  | area       | population   | gdp           |
